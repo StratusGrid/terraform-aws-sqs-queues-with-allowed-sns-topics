@@ -14,3 +14,10 @@ module "sqs_queues_etl" {
   )}"
 }
 ```
+### Example Mappings:
+```
+sqs_to_sns_mappings = {
+  queue-name = "arn:aws:sns:us-east-1:123456789012:sns-topic-name"
+  other-queue-name = "arn:aws:sns:us-east-1:123456789012:other-sns-topic-name"
+}
+```

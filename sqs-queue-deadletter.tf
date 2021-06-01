@@ -40,5 +40,5 @@ resource "aws_sqs_queue" "deadletter_queue_standard" {
   message_retention_seconds = "${var.deadletter_message_retention_seconds}"
   receive_wait_time_seconds = "${var.deadletter_receive_wait_time_seconds}"
 
-  tags = "${var.input_tags}"
+  tags = "${local.common_tags}"
 }

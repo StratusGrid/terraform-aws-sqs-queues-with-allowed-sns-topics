@@ -41,5 +41,5 @@ resource "aws_sqs_queue" "queue" {
   receive_wait_time_seconds = "${var.receive_wait_time_seconds}"
   redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.deadletter_queue_standard.*.arn[count.index]}\",\"maxReceiveCount\":${var.queue_redrive_max_submissions_before_deadletter}}"
 
-  tags = "${var.input_tags}"
+  tags = "${local.common_tags}"
 }

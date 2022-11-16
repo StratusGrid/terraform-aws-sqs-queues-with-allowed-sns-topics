@@ -3,18 +3,33 @@
 GitHub: [StratusGrid/terraform-aws-sqs-queues-with-allowed-sns-topics](https://github.com/StratusGrid/terraform-aws-sqs-queues-with-allowed-sns-topics)
 ## Example
 ```hcl
-module "sqs_queues_with_allowed_sns_topics" {
-  source  = "StratusGrid/terraform-aws-sqs-queues-with-allowed-sns-topics/aws"
-  version = "1.0.0"
-  project_name = "projectname"
+### Example Usage:
+```
+module "sqs_queues_etl" {
+  source      = "github.com/StratusGrid/terraform-aws-sqs-queues-with-allowed-sns-topics"
+  name_prefix = "${var.name_prefix}"
+  name_suffix = ""
+  sqs_to_sns_mappings = "${var.sqs_to_sns_mappings}"
+  input_tags  = "${merge(local.common_tags,
+    map(
+    )
+  )}"
 }
+```
+### Example Mappings:
+```
+sqs_to_sns_mappings = {
+  queue-name = "arn:aws:sns:us-east-1:123456789012:sns-topic-name"
+  other-queue-name = "arn:aws:sns:us-east-1:123456789012:other-sns-topic-name"
+}
+```
 ```
 ## StratusGrid Standards we assume
 - All resource names and name tags shall use `_` and not `-`s
 - The old naming standard for common files such as inputs, outputs, providers, etc was to prefix them with a `-`, this is no longer true as it's not POSIX compliant. Our pre-commit hooks will fail with this old standard.
 - StratusGrid generally follows the TerraForm standards outlined [here](https://www.terraform-best-practices.com/naming)
 ## Repo Knowledge
-Repository for Module terraform-aws-sqs-queues-with-allowed-sns-topics
+Queue and Deadletter queue that has trusting role set up for SNS Topics
 ## Documentation
 This repo is self documenting via Terraform Docs, please see the note at the bottom.
 ### `LICENSE`

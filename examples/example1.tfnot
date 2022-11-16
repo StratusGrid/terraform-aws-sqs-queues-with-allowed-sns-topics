@@ -1,0 +1,5 @@
+module "sqs_queues_with_allowed_sns_topics" {
+  source  = "StratusGrid/terraform-aws-sqs-queues-with-allowed-sns-topics/aws"
+  version = "1.0.0"
+  project_name = "projectname"
+}
